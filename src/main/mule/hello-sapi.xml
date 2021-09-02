@@ -9,6 +9,7 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 	</http:listener-config>
 	<flow name="hello-flow" doc:id="555f09de-bf82-42e2-b2c9-39d7399ee5f8" >
 		<http:listener doc:name="Listener" doc:id="f426de51-82ee-4b3e-9a20-e83a02b1fea4" config-ref="http-listner-config" path="/hello"/>
+		<logger level="INFO" doc:name="Logger" doc:id="866bfd98-eedb-4492-bf2d-9e3ed3fc0d02" message="A request has been received from #[uuid()] at #[now()]"/>
 		<set-payload value='#["Hey! welcome to mule 4"]' doc:name="Set Payload" doc:id="dd64b8df-e7fa-4d29-88dc-31a9f5382d8a" />
 	</flow>
 </mule>
