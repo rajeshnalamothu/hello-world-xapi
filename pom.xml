@@ -19,6 +19,56 @@
 		<mule.maven.plugin.version>3.5.2</mule.maven.plugin.version>
 	</properties>
 
+
+	<profiles>
+		<profile>
+			<id>Design</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.mule.tools.maven</groupId>
+						<artifactId>mule-maven-plugin</artifactId>
+						<version>${mule.maven.plugin.version}</version>
+						<extensions>true</extensions>
+						<configuration>
+							<classifier>mule-application</classifier>
+							<cloudHubDeployment>
+								<applicationName>${cloudhub.application.name}</applicationName>
+								<environment>${environment}</environment>
+								<workers>${workers}</workers>
+								<workerType>${workerType}</workerType>
+								<objectStoreV2>true</objectStoreV2>
+							</cloudHubDeployment>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>Sandbox</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.mule.tools.maven</groupId>
+						<artifactId>mule-maven-plugin</artifactId>
+						<version>${mule.maven.plugin.version}</version>
+						<extensions>true</extensions>
+						<configuration>
+							<classifier>mule-application</classifier>
+							<cloudHubDeployment>
+								<applicationName>${cloudhub.application.name}</applicationName>
+								<environment>${environment}</environment>
+								<workers>${workers}</workers>
+								<workerType>${workerType}</workerType>
+								<objectStoreV2>true</objectStoreV2>
+							</cloudHubDeployment>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -38,11 +88,7 @@
 						<muleVersion>${app.runtime}</muleVersion>
 						<username>${anypoint.username}</username>
 						<password>${anypoint.password}</password>
-						<applicationName>${cloudhub.application.name}</applicationName>
-						<environment>${environment}</environment>
-						<workers>${workers}</workers>
-						<workerType>${workerType}</workerType>
-						<objectStoreV2>true</objectStoreV2>					
+						<objectStoreV2>true</objectStoreV2>
 					</cloudHubDeployment>
 				</configuration>
 			</plugin>
