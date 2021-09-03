@@ -21,6 +21,19 @@ pipeline {
       }
     }
 
+     stage('Deploy Sandbox') {
+      environment {
+        ENVIRONMENT = 'Sandbox'
+        APP_NAME = 'hello-world-sapi-test'
+        WORKERS = '1'
+        WORKER_TYPE = 'MICRO'
+      }
+      steps {
+      		echo 'Deploying to Sandbox Environment...'
+            bat 'mvn -DskipTests -PSandbox deploy -DmuleDeploy -Danypoint.url="%ANYPOINT_URL%" -Dmule.version="%MULE_VERSION%" -Danypoint.username="%ANYPOINT_CREDS_USR%" -Danypoint.password="%ANYPOINT_CREDS_PSW%" -Dcloudhub.application.name="%APP_NAME%" -Denvironment="%ENVIRONMENT%" -Dworkers="%WORKER%" -DworkerType="%WORKER_TYPE%"'
+      }
+    }
+     
      stage('Deploy Design') {
       environment {
         ENVIRONMENT = 'Design'
@@ -33,17 +46,6 @@ pipeline {
             bat 'mvn deploy -DskipTests -PDesign -DmuleDeploy -Danypoint.url="%ANYPOINT_URL%" -Dmule.version="%MULE_VERSION%" -Danypoint.username="%ANYPOINT_CREDS_USR%" -Danypoint.password="%ANYPOINT_CREDS_PSW%" -Dcloudhub.application.name="%APP_NAME%" -Denvironment="%ENVIRONMENT%" -Dworkers="%WORKER%" -DworkerType="%WORKER_TYPE%"'
       }
     }
-    stage('Deploy Sandbox') {
-      environment {
-        ENVIRONMENT = 'Sandbox'
-        APP_NAME = 'hello-world-sapi-test'
-        WORKERS = '1'
-        WORKER_TYPE = 'MICRO'
-      }
-      steps {
-      		echo 'Deploying to Sandbox Environment...'
-            bat 'mvn -DskipTests -PSandbox deploy -DmuleDeploy -Danypoint.url="%ANYPOINT_URL%" -Dmule.version="%MULE_VERSION%" -Danypoint.username="%ANYPOINT_CREDS_USR%" -Danypoint.password="%ANYPOINT_CREDS_PSW%" -Dcloudhub.application.name="%APP_NAME%" -Denvironment="%ENVIRONMENT%" -Dworkers="%WORKER%" -DworkerType="%WORKER_TYPE%"'
-      }
-    }
+    
   }
 }
