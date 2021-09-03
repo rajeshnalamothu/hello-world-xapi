@@ -30,7 +30,7 @@ pipeline {
       }
       steps {
       		echo 'Deploying to Design Environment...'
-            bat 'mvn -DskipTests -PDesign deploy -DmuleDeploy -Danypoint.url="%ANYPOINT_URL%" -Dmule.version="%MULE_VERSION%" -Danypoint.username="%DEPLOY_CREDS_USR%" -Danypoint.password="%DEPLOY_CREDS_PSW%" -Dcloudhub.application.name="%APP_NAME%" -Denvironment="%ENVIRONMENT%" -Dworkers="%WORKER%"' -DworkerType="%WORKER_TYPE%"'
+            bat 'mvn -DskipTests -PDesign deploy -DmuleDeploy -Danypoint.url="%ANYPOINT_URL%" -Dmule.version="%MULE_VERSION%" -Danypoint.username="%DEPLOY_CREDS_USR%" -Danypoint.password="%DEPLOY_CREDS_PSW%" -Dcloudhub.application.name="%APP_NAME%" -Denvironment="%ENVIRONMENT%" -Dworkers="%WORKER%" -DworkerType="%WORKER_TYPE%"'
       }
     }
     stage('Deploy Sandbox') {
@@ -42,7 +42,7 @@ pipeline {
       }
       steps {
       		echo 'Deploying to Sandbox Environment...'
-            bat 'mvn -DskipTests -PSandbox deploy -DmuleDeploy -Danypoint.url="%ANYPOINT_URL%" -Dmule.version="%MULE_VERSION%" -Danypoint.username="%DEPLOY_CREDS_USR%" -Danypoint.password="%DEPLOY_CREDS_PSW%" -Dcloudhub.application.name="%APP_NAME%" -Denvironment="%ENVIRONMENT%" -Dworkers="%WORKER%"' -DworkerType="%WORKER_TYPE%"'
+            bat 'mvn -DskipTests -PSandbox deploy -DmuleDeploy -Danypoint.url="%ANYPOINT_URL%" -Dmule.version="%MULE_VERSION%" -Danypoint.username="%DEPLOY_CREDS_USR%" -Danypoint.password="%DEPLOY_CREDS_PSW%" -Dcloudhub.application.name="%APP_NAME%" -Denvironment="%ENVIRONMENT%" -Dworkers="%WORKER%" -DworkerType="%WORKER_TYPE%"'
       }
     }
   }
